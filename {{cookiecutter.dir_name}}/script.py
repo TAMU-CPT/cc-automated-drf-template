@@ -2,12 +2,9 @@ import json
 import ast
 import _ast
 
-app_name = ''
-
-with open('cookie.json') as jsonfile:
-    app_name = json.load(jsonfile)['app_name']
-
+app_name = '{{cookiecutter.app_name}}'
 models = {}
+
 # parse models.py
 with open('%s/models.py' % app_name) as models_file:
     m = ast.parse(models_file.read())
