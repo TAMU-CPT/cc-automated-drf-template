@@ -76,7 +76,10 @@ with open('%s/urls.py' % app_name, 'w') as url_file:
     url_file.write('router = routers.DefaultRouter()\n')
 
     for model in models:
-        url_file.write("router.register(r'%(0)s', views.%(1)sViewSet)\n" % {'0':model.lower() + 's', '1':model})
+        plural = 's'
+        if model.endswith('s'):
+            plural = 'es'
+        url_file.write("router.register(r'%(0)s', views.%(1)sViewSet)\n" % {'0':model.lower() + plural, '1':model})
 
     url_file.write('\n')
 
