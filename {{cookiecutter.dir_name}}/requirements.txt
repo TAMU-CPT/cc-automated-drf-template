@@ -2,3 +2,4 @@ Django==1.10.1
 djangorestframework
 markdown
 django-filter
+djangorestframework-jwt
