@@ -1,7 +1,6 @@
 import ast, _ast, subprocess, os, argparse
 
-def write_files():
-    app_name = '{{cookiecutter.app_name}}'
+def write_files(app_name):
     models = {}
 
     # parse models.py
@@ -70,7 +69,6 @@ def write_files():
         url_file.write('from django.conf.urls import url, include\n')
         url_file.write('from rest_framework import routers\n')
         url_file.write('from %s import views\n' % app_name)
-        url_file.write('from django.contrib import admin\n')
         url_file.write('\n')
         url_file.write('router = routers.DefaultRouter()\n')
 
@@ -82,19 +80,19 @@ def write_files():
 
         url_file.write('\n')
 
-        u = """urlpatterns = [
-        url(r'^admin/', admin.site.urls),
-        url(r'^', include(router.urls)),
-        url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    ]"""
+        u = '\n'.join(["urlpatterns = [",
+                       " "*4 + "url(r'^%s/', include(router.urls))," % app_name,
+                       "]"])
+
         url_file.write(u)
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Populate serializers, views, urls, and admin based on models.py')
     parser.add_argument('--disable-venv', help='Disable creation of virtual environment', action="store_true")
+    parser.add_argument("--app_name", help='App name on which to perform script', default="{{cookiecutter.app_name}}")
     args = parser.parse_args()
 
-    write_files()
+    write_files(args.app_name)
 
     my_env = os.environ.copy()
     if not args.disable_venv:
@@ -102,5 +100,5 @@ if __name__ == '__main__':
         my_env["PATH"] = os.getcwd() + '/venv/bin:'  + my_env["PATH"]
 
     subprocess.check_call(["pip", "install", "-r", "requirements.txt"], env=my_env)
-    subprocess.check_call(["python", "manage.py", "makemigrations", "{{cookiecutter.app_name}}"], env=my_env)
+    subprocess.check_call(["python", "manage.py", "makemigrations", "%s" % args.app_name], env=my_env)
     subprocess.check_call(["python", "manage.py", "migrate"], env=my_env)
