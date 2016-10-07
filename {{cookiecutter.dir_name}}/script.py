@@ -26,8 +26,21 @@ def write_files(app_name):
             ser_file.write('\n')
             ser_file.write(s)
 
-        ser_file.write('from rest_framework import serializers\n')
-        ser_file.write('from %s.models import ' % app_name + ', '.join([model for model in models]) + '\n')
+        ser_file.write('\n'.join(["from django.contrib.auth.models import User, Group",
+                                  "from rest_framework import serializers",
+                                  "from %s.models import " % app_name + ', '.join([model for model in models]) + '\n']))
+
+        ser_file.write('\n'.join(["\nclass GroupSerializer(serializers.ModelSerializer):",
+                                  " "*4 + "class Meta:",
+                                  " "*8 + "model = Group",
+                                  " "*8 + "fields = ('name',)\n"]))
+
+        ser_file.write('\n'.join(["\nclass UserSerializer(serializers.ModelSerializer):",
+                                  " "*4 + "groups = GroupSerializer(many=True)",
+                                  " "*4 + "class Meta:",
+                                  " "*8 + "model = User",
+                                  " "*8 + "fields = ('url', 'username', 'email', 'groups',)\n"]))
+
         for model in models:
             ser_class(model)
 
@@ -40,9 +53,13 @@ def write_files(app_name):
             view_file.write('\n')
             view_file.write(v)
 
-        view_file.write('from rest_framework import viewsets\n')
-        view_file.write('from %s.serializers import ' % app_name + ', '.join([name for name in serializer_names]) + '\n')
-        view_file.write('from %s.models import ' % app_name + ', '.join([model for model in models]) + '\n')
+        view_file.write('\n'.join(["from rest_framework import viewsets",
+                                   "from django.contrib.auth.models import User, Group",
+                                   "from %s.serializers import UserSerializer, GroupSerializer, " % app_name + ', '.join([name for name in serializer_names]),
+                                   "from %s.models import " % app_name + ', '.join([model for model in models]) + '\n']))
+
+        viewset_class("User")
+        viewset_class("Group")
         for model in models:
             viewset_class(model)
 
@@ -66,12 +83,13 @@ def write_files(app_name):
 
     # urls.py
     with open('%s/urls.py' % app_name, 'w') as url_file:
-        url_file.write('from django.conf.urls import url, include\n')
-        url_file.write('from rest_framework import routers\n')
-        url_file.write('from %s import views\n' % app_name)
-        url_file.write('\n')
-        url_file.write('router = routers.DefaultRouter()\n')
 
+        url_file.write('\n'.join(["from django.conf.urls import url, include",
+                                  "from rest_framework import routers",
+                                  "from %s import views\n" % app_name,
+                                  "router = routers.DefaultRouter()",
+                                  "router.register(r'users', views.UserViewSet)",
+                                  "router.register(r'groups', views.GroupViewSet)\n"]))
         for model in models:
             plural = 's'
             if model.endswith('s'):
