@@ -15,7 +15,7 @@ $ pip install cookiecutter
 ```
 Give names for your directory, project, and app when prompted by Cookiecutter:
 ```console
-$ cookiecutter https://github.com/TAMU-CPT/drf_template.git
+$ cookiecutter https://github.com/TAMU-CPT/cc-automated-drf-template.git
 dir_name [test-project]:
 project_name [project]: 
 app_name [base_app]:
