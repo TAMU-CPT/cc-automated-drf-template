@@ -52,4 +52,4 @@ unsure of the changes made after running it, make sure to ```git add -p``` to ad
 that will be staged in the next commit.
 
 ## License
-This software is licensed under AGPL-3.0.
+This software is licensed under BSD-3-Clause
