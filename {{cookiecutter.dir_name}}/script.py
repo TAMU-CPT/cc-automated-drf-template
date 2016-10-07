@@ -22,7 +22,8 @@ def write_files(app_name):
             s = "class %sSerializer(serializers.HyperlinkedModelSerializer):\n" % model
             s += "    class Meta:\n"
             s += "        model = %s\n" % model
-            s += " "*8 + "fields = (" + ', '.join(["'%s'" % x for x in models[model]]) + ')\n'
+            if len(models[model]) > 0:
+                s += " "*8 + "fields = (" + ', '.join(["'%s'" % x for x in models[model]]) + ',)\n'
             ser_file.write('\n')
             ser_file.write(s)
 
@@ -70,7 +71,10 @@ def write_files(app_name):
             for model in models:
                 a = "class %sAdmin(admin.ModelAdmin):\n" % model
                 a += "    queryset = %s.objects.all()\n" % model
-                a += "    " + "list_display = (" + ', '.join(["'%s'" % x for x in models[model] if models[model][x] != 'ManyToManyField'])  + ')\n'
+
+                z = ["'%s'" % x for x in models[model] if models[model][x] != 'ManyToManyField']
+                if len(z) > 0:
+                    a += "    " + "list_display = (" + ', '.join(z)  + ',)\n'
                 admin_file.write('\n')
                 admin_file.write(a)
 
