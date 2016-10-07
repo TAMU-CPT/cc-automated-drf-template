@@ -18,7 +18,7 @@ Give names for your directory, project, and app when prompted by Cookiecutter:
 $ cookiecutter https://github.com/TAMU-CPT/cc-automated-drf-template.git
 dir_name [test-project]:
 project_name [project]:
-app_name [base-app]:
+app_name [base_app]:
 ```
 Modify your models.py file in your app. Then navigate to where manage.py and script.py are located and run:
 ```console
