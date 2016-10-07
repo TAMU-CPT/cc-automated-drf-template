@@ -1,5 +1,5 @@
 {
-    "dir_name": "guanine_test",
-    "project_name": "guanine",
-    "app_name": "base"
+    "dir_name": "test-project",
+    "project_name": "project",
+    "app_name": "base-app"
 }
