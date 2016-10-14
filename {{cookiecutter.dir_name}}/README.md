@@ -8,16 +8,17 @@ $ python script.py
 ```
 The script will install all requirements and automatically apply migrations.
 
-#### Note on virtual environments:
-If you have already set up/activated a virtual environment, make sure to use the ```--disable-venv``` flag.
-Otherwise, a virtualenv will be created for you. 
-
 That's it! You now have automatically-templated views, serializers, urls, and admin files based on your models.
-To check it all out, run the server. Don't forget to activate your virtualenv!
+To check it all out, run the server. Don't forget to activate your virtualenv! You may also want to createsuperuser so that you can log in to the admin interface.
 ```console
 $ . venv/bin/activate
+$ python manage.py createsuperuser
 $ python manage.py runserver
 ```
+
+#### Note on virtual environments:
+If you have already set up/activated a virtual environment, make sure to use the ```--disable-venv``` flag.
+Otherwise, a virtualenv will be created for you.
 
 ## Multiple app support
 Some Django projects have multiple apps in addition to the base application.
