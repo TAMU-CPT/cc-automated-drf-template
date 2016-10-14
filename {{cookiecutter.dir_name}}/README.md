@@ -17,7 +17,7 @@ $ python manage.py runserver
 ```
 
 #### Note on virtual environments:
-If you have already set up/activated a virtual environment, make sure to use the ```--disable-venv``` flag.
+If you have already set up/activated a virtual environment, make sure to use the ```--disable_venv``` flag.
 Otherwise, a virtualenv will be created for you.
 
 ## Multiple app support
@@ -27,7 +27,7 @@ using the ```--app_name``` flag, like this:
 ```console
 (venv) $ python script.py --app_name another_app --disable-venv
 ```
-Since I am already in a venv, I also used ```--disabe-venv```.
+Since I am already in a venv, I also used ```--disabe_venv```.
 
 #### Note on file changes:
 If you have modified views, serializers, urls, or admin files before running the script or are

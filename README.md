@@ -36,7 +36,7 @@ $ python manage.py runserver
 ```
 
 #### Note on virtual environments:
-If you have already set up/activated a virtual environment, make sure to use the ```--disable-venv``` flag.
+If you have already set up/activated a virtual environment, make sure to use the ```--disable_venv``` flag.
 Otherwise, a virtualenv will be created for you. 
 
 ## Multiple app support
