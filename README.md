@@ -1,6 +1,6 @@
 # cc-automated-drf-template
 cc_automated_drf_template uses [Cookiecutter](https://github.com/audreyr/cookiecutter) and a custom script to automatically populate a Django REST project given a models.py. Just 
-provide your models.py and cc_automated_drf_template will write your views, serializers, urls, and admin files for you!
+provide your models.py and cc_automated_drf_template will write your views, serializers, urls, and admin files for you.
 
 ## Features
 - Django REST Framework integration
