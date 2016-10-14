@@ -110,7 +110,7 @@ def write_files(app_name):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Populate serializers, views, urls, and admin based on models.py')
-    parser.add_argument('--disable-venv', help='Disable creation of virtual environment', action="store_true")
+    parser.add_argument('--disable_venv', help='Disable creation of virtual environment', action="store_true")
     parser.add_argument("--app_name", help='App name on which to perform script', default="{{cookiecutter.app_name}}")
     args = parser.parse_args()
 

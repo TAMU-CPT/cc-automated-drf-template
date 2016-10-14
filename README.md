@@ -27,7 +27,7 @@ $ python script.py
 The script will install all requirements and automatically apply migrations.
 
 #### Note on virtual environments:
-If you have already set up/activated a virtual environment, make sure to use the ```--disable-venv``` flag.
+If you have already set up/activated a virtual environment, make sure to use the ```--disable_venv``` flag.
 Otherwise, a virtualenv will be created for you. 
 
 That's it! You now have automatically-templated views, serializers, urls, and admin files based on your models.
@@ -42,7 +42,7 @@ Some Django projects have multiple apps in addition to the base application.
 If you want to similarly generate files for these apps, you may run the script again
 using the ```--app_name``` flag, like this:
 ```console
-(venv) $ python script.py --app_name another_app --disable-venv
+(venv) $ python script.py --app_name another_app --disable_venv
 ```
 Since I am already in a venv, I also used ```--disabe-venv```.
 
