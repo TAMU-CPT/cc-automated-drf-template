@@ -1,6 +1,6 @@
 # cc-automated-drf-template
 cc_automated_drf_template uses [Cookiecutter](https://github.com/audreyr/cookiecutter) and a custom script to automatically populate a Django REST project given a models.py. Just 
-provide your models and cc_automated_drf_template will write your views, serializers, urls, and admin for you!
+provide your models.py and cc_automated_drf_template will write your views, serializers, urls, and admin files for you!
 
 ## Features
 - Django REST Framework integration
@@ -31,9 +31,11 @@ If you have already set up/activated a virtual environment, make sure to use the
 Otherwise, a virtualenv will be created for you. 
 
 That's it! You now have automatically-templated views, serializers, urls, and admin files based on your models.
-To check it all out, run the server. Don't forget to activate your virtualenv!
+To check it all out, run the server. Don't forget to activate your virtualenv! You may also want to createsuperuser so that
+you can log in to the admin interface.
 ```console
 $ . venv/bin/activate
+$ python manage.py createsuperuser
 $ python manage.py runserver
 ```
 
@@ -50,6 +52,10 @@ Since I am already in a venv, I also used ```--disabe-venv```.
 If you have modified views, serializers, urls, or admin files before running the script or are
 unsure of the changes made after running it, make sure to ```git add -p``` to add or ignore changes
 that will be staged in the next commit.
+
+## But wait, there's more!
+If you are looking to add a front end, check out [CICADA](https://github.com/tamu-cpt/CICADA), which will 
+automatically template an AngularJS frontend that will plug in to the backend you just created.
 
 ## License
 This software is licensed under BSD-3-Clause
