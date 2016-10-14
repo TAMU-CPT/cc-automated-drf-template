@@ -12,6 +12,7 @@ def write_files(app_name):
                 for x in i.body:
                     if type(x) == _ast.Assign:
                         models[i.name][x.targets[0].id] = x.value.func.attr
+                models[i.name]['id'] = "Intrinsic"
 
 
     serializer_names = [model+'Serializer' for model in models]
