@@ -35,13 +35,13 @@ def write_files(app_name):
         ser_file.write('\n'.join(["\nclass GroupSerializer(serializers.ModelSerializer):",
                                   " "*4 + "class Meta:",
                                   " "*8 + "model = Group",
-                                  " "*8 + "fields = ('name',)\n"]))
+                                  " "*8 + "fields = ('id', 'name',)\n"]))
 
         ser_file.write('\n'.join(["\nclass UserSerializer(serializers.ModelSerializer):",
                                   " "*4 + "groups = GroupSerializer(many=True)",
                                   " "*4 + "class Meta:",
                                   " "*8 + "model = User",
-                                  " "*8 + "fields = ('url', 'username', 'email', 'groups',)\n"]))
+                                  " "*8 + "fields = ('id', 'username', 'email', 'groups',)\n"]))
 
         for model in models:
             ser_class(model)
